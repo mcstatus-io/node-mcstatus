@@ -1,5 +1,5 @@
 # node-mcstatus
-The Node.js library for interacting with the mcstatus.io API.
+The official Node.js library for interacting with the [mcstatus.io](https://mcstatus.io) API.
 
 ## Getting Started
 
