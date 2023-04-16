@@ -25,17 +25,18 @@ const port = 25565;
 // to 25565.
 mcs.statusJava(host, port)
     .then((result) => {
-        // ...
         // `result` will be the same shape and
         // properties as what is documented on
         // our website.
         // https://mcstatus.io/docs#java-status
     })
     .catch((error) => {
-        // Handle the `error` ...
-        // Receiving an error does not mean that the
-        // server is offline, it means there was an
-        // issue with our service or your network.
+        // If the server is offline, then
+        // you will NOT receive an error here.
+        // Instead, you will use the `result.online`
+        // boolean values in `.then()`.
+        // Receiving an error here means that there
+        // was an error with the service itself.
     })
 ```
 
@@ -60,10 +61,12 @@ mcs.statusBedrock(host, port)
         // https://mcstatus.io/docs#bedrock-status
     })
     .catch((error) => {
-        // Handle the `error` ...
-        // Receiving an error does not mean that the
-        // server is offline, it means there was an
-        // issue with our service or your network.
+        // If the server is offline, then
+        // you will NOT receive an error here.
+        // Instead, you will use the `result.online`
+        // boolean values in `.then()`.
+        // Receiving an error here means that there
+        // was an error with the service itself.
     })
 ```
 
