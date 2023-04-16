@@ -1,6 +1,6 @@
 {
 	"name": "node-mcstatus",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "The Node.js library for interacting with the mcstatus.io API.",
 	"main": "dist/index.js",
 	"scripts": {
