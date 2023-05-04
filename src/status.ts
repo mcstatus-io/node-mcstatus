@@ -37,6 +37,11 @@ interface JavaStatusResponse extends StatusResponse {
 		name: string,
 		version: string
 	}[]
+  plugins?: {
+		name: string,
+		version: string
+	}[]
+  software?: string
 }
 
 interface BedrockStatusResponse extends StatusResponse {
