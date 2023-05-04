@@ -109,7 +109,7 @@ test('statusJava()', () => {
 				expect(result.motd.html.length).toBeGreaterThan(0);
 
 				// result.icon
-				expect(['string', null]).toContain(typeof result.icon);
+				expect(typeof result.icon === 'string' || result.icon === null).toBe(true);
 
 				if (typeof result.icon === 'string') {
 					expect(result.icon.length).toBeGreaterThan(0);
@@ -127,6 +127,26 @@ test('statusJava()', () => {
 					// result.mods[i].version
 					expect(typeof mod.version).toBe('string');
 					expect(mod.version.length).toBeGreaterThan(0);
+				}
+
+				// result.software
+				expect(typeof result.software === 'string' || result.software === null).toBe(true);
+
+				if (result.software !== null) {
+					expect(result.software.length).toBeGreaterThan(0);
+				}
+
+				// result.plugins
+				expect(Array.isArray(result.plugins)).toBe(true);
+
+				for (const plugin of result.plugins) {
+					// result.plugins[i].name
+					expect(typeof plugin.name).toBe('string');
+					expect(plugin.name.length).toBeGreaterThan(0);
+
+					// result.plugins[i].version
+					expect(typeof plugin.version).toBe('string');
+					expect(plugin.version.length).toBeGreaterThan(0);
 				}
 			}
 		});
