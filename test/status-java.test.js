@@ -1,6 +1,6 @@
 const dist = require('../dist');
 
-const host = process.env.HOST || 'play.hypixel.net';
+const host = process.env.HOST || 'demo.mcstatus.io';
 const port = parseInt(process.env.PORT || '25565');
 
 test('statusJava()', () => {

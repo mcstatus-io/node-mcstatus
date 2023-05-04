@@ -1,6 +1,6 @@
 const dist = require('../dist');
 
-const host = process.env.HOST || 'pe.mineplex.com';
+const host = process.env.HOST || 'demo.mcstatus.io';
 const port = parseInt(process.env.PORT || '19132');
 
 test('statusBedrock()', () => {
