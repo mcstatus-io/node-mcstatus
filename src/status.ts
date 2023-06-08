@@ -1,6 +1,10 @@
 import superagent from 'superagent';
 import { BASE_URL } from './enum';
 
+interface JavaStatusOptions {
+	query: boolean
+}
+
 interface StatusResponse {
 	online: boolean,
 	host: string,
@@ -63,8 +67,8 @@ interface BedrockStatusResponse extends StatusResponse {
 	edition?: 'MCPE' | 'MCEE'
 }
 
-const statusJava = async (host: string, port = 25565): Promise<JavaStatusResponse> => {
-	const result = await superagent.get(`${BASE_URL}/status/java/${host}:${port}`);
+const statusJava = async (host: string, port = 25565, options?: JavaStatusOptions): Promise<JavaStatusResponse> => {
+	const result = await superagent.get(`${BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
 
 	if (result.statusCode !== 200) {
 		throw new Error(result.body);

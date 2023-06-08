@@ -18,12 +18,13 @@ const mcs = require('node-mcstatus');
 
 // ...
 
-const host = 'play.hypixel.net';
+const host = 'demo.mcstatus.io';
 const port = 25565;
+const options = { query: true };
 
 // The `port` argument is optional and defaults
-// to 25565.
-mcs.statusJava(host, port)
+// to 25565. The `options` argument is optional.
+mcs.statusJava(host, port, options)
     .then((result) => {
         // `result` will be the same shape and
         // properties as what is documented on
@@ -47,7 +48,7 @@ const mcs = require('node-mcstatus');
 
 // ...
 
-const host = 'pe.mineplex.com';
+const host = 'demo.mcstatus.io';
 const port = 19132;
 
 // The `port` argument is optional and defaults
