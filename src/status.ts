@@ -68,23 +68,23 @@ interface BedrockStatusResponse extends StatusResponse {
 }
 
 const statusJava = async (host: string, port = 25565, options?: JavaStatusOptions): Promise<JavaStatusResponse> => {
-	const result = await superagent.get(`${BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
+    const result = await superagent.get(`${BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
 
-	if (result.statusCode !== 200) {
-		throw new Error(result.body);
-	}
+    if (result.statusCode !== 200) {
+        throw new Error(result.body);
+    }
 
-	return result.body as JavaStatusResponse;
+    return result.body as JavaStatusResponse;
 };
 
 const statusBedrock = async (host: string, port = 19132): Promise<BedrockStatusResponse> => {
-	const result = await superagent.get(`${BASE_URL}/status/bedrock/${host}:${port}`);
+    const result = await superagent.get(`${BASE_URL}/status/bedrock/${host}:${port}`);
 
-	if (result.statusCode !== 200) {
-		throw new Error(result.body);
-	}
+    if (result.statusCode !== 200) {
+        throw new Error(result.body);
+    }
 
-	return result.body as BedrockStatusResponse;
+    return result.body as BedrockStatusResponse;
 };
 
 export { statusJava, statusBedrock, StatusResponse, JavaStatusResponse, BedrockStatusResponse };
