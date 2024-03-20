@@ -2,7 +2,12 @@ import superagent from 'superagent';
 import { BASE_URL } from './enum';
 
 interface JavaStatusOptions {
-	query: boolean
+	query?: boolean,
+	base_url?: string,
+}
+
+interface BedrockStatusOptions {
+	base_url?: string,
 }
 
 interface StatusResponse {
@@ -68,7 +73,7 @@ interface BedrockStatusResponse extends StatusResponse {
 }
 
 const statusJava = async (host: string, port = 25565, options?: JavaStatusOptions): Promise<JavaStatusResponse> => {
-    const result = await superagent.get(`${BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
+    const result = await superagent.get(`${options.base_url ?? BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
 
     if (result.statusCode !== 200) {
         throw new Error(result.body);
@@ -77,8 +82,8 @@ const statusJava = async (host: string, port = 25565, options?: JavaStatusOption
     return result.body as JavaStatusResponse;
 };
 
-const statusBedrock = async (host: string, port = 19132): Promise<BedrockStatusResponse> => {
-    const result = await superagent.get(`${BASE_URL}/status/bedrock/${host}:${port}`);
+const statusBedrock = async (host: string, port = 19132, options?: BedrockStatusOptions): Promise<BedrockStatusResponse> => {
+    const result = await superagent.get(`${options.base_url ?? BASE_URL}/status/bedrock/${host}:${port}`);
 
     if (result.statusCode !== 200) {
         throw new Error(result.body);
