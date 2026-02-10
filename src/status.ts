@@ -8,7 +8,7 @@ interface JavaStatusOptions {
 }
 
 interface BedrockStatusOptions {
-    timeout?: number;
+    timeout?: number,
     baseURL?: string,
 }
 
