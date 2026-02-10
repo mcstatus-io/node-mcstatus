@@ -3,10 +3,12 @@ import { BASE_URL } from './enum';
 
 interface JavaStatusOptions {
 	query?: boolean,
+  timeout?: number,
 	baseURL?: string,
 }
 
 interface BedrockStatusOptions {
+  timeout?: number;
 	baseURL?: string,
 }
 
@@ -14,6 +16,7 @@ interface StatusResponse {
 	online: boolean,
 	host: string,
 	port: number,
+  ip_address: string | null,
 	eula_blocked: boolean,
 	retrieved_at: number,
 	expires_at: number
@@ -73,7 +76,12 @@ interface BedrockStatusResponse extends StatusResponse {
 }
 
 const statusJava = async (host: string, port = 25565, options?: JavaStatusOptions): Promise<JavaStatusResponse> => {
-    const result = await superagent.get(`${options?.baseURL ?? BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`);
+    let url = `${options?.baseURL ?? BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`;
+    if (options?.timeout) {
+      url += `&timeout=${options.timeout}`;
+    }
+
+    const result = await superagent.get(url);
 
     if (result.statusCode !== 200) {
         throw new Error(result.body);
@@ -83,7 +91,12 @@ const statusJava = async (host: string, port = 25565, options?: JavaStatusOption
 };
 
 const statusBedrock = async (host: string, port = 19132, options?: BedrockStatusOptions): Promise<BedrockStatusResponse> => {
-    const result = await superagent.get(`${options?.baseURL ?? BASE_URL}/status/bedrock/${host}:${port}`);
+    let url = `${options?.baseURL ?? BASE_URL}/status/bedrock/${host}:${port}`;
+    if (options?.timeout) {
+      url += `?timeout=${options.timeout}`;
+    }
+
+    const result = await superagent.get(url);
 
     if (result.statusCode !== 200) {
         throw new Error(result.body);

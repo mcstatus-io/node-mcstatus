@@ -23,6 +23,12 @@ test('statusJava()', () => {
             expect(result.port).toBe(port);
             expect(Number.isInteger(result.port)).toBe(true);
 
+            // result.ip_address
+            expect(typeof result.ip_address === 'string' || result.ip_address === null).toBe(true);
+            if (result.ip_address !== null) {
+              expect(result.ip_address.length).toBeGreaterThan(0);
+            }
+
             // result.eula_blocked
             expect(typeof result.eula_blocked).toBe('boolean');
 
