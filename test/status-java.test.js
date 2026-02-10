@@ -26,7 +26,7 @@ test('statusJava()', () => {
             // result.ip_address
             expect(typeof result.ip_address === 'string' || result.ip_address === null).toBe(true);
             if (result.ip_address !== null) {
-              expect(result.ip_address.length).toBeGreaterThan(0);
+                expect(result.ip_address.length).toBeGreaterThan(0);
             }
 
             // result.eula_blocked

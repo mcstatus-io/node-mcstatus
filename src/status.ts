@@ -78,7 +78,7 @@ interface BedrockStatusResponse extends StatusResponse {
 const statusJava = async (host: string, port = 25565, options?: JavaStatusOptions): Promise<JavaStatusResponse> => {
     let url = `${options?.baseURL ?? BASE_URL}/status/java/${host}:${port}?query=${options?.query ?? true}`;
     if (options?.timeout) {
-      url += `&timeout=${options.timeout}`;
+        url += `&timeout=${options.timeout}`;
     }
 
     const result = await superagent.get(url);
@@ -93,7 +93,7 @@ const statusJava = async (host: string, port = 25565, options?: JavaStatusOption
 const statusBedrock = async (host: string, port = 19132, options?: BedrockStatusOptions): Promise<BedrockStatusResponse> => {
     let url = `${options?.baseURL ?? BASE_URL}/status/bedrock/${host}:${port}`;
     if (options?.timeout) {
-      url += `?timeout=${options.timeout}`;
+        url += `?timeout=${options.timeout}`;
     }
 
     const result = await superagent.get(url);
