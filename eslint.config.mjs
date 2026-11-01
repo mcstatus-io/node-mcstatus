@@ -1,14 +1,14 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
+import parserTypeScript from '@typescript-eslint/parser';
 
 export default [
-    { files: ['**/*.{js,mjs,cjs,jsx}'] },
+    { files: ['**/*.{js,mjs,cjs,ts}'] },
+    { ignores: ['dist/**/*'] },
     pluginJs.configs.recommended,
     {
         rules: {
             'quotes': ['error', 'single'],
-            'react/react-in-jsx-scope': 'off',
-            'react/prop-types': 'off',
             'semi': 'error',
             'require-await': 'error',
             'prefer-const': 'error',
@@ -20,6 +20,12 @@ export default [
         },
         languageOptions: {
             globals: globals.node
+        }
+    },
+    {
+        files: ['src/**/*.ts'],
+        languageOptions: {
+            parser: parserTypeScript
         }
     },
     {
